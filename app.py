@@ -1,17 +1,6 @@
 import os
 import csv
-from data_model import DataModel
-
-def load_excel_files(directory: str):
-    data_model = DataModel()
-    for file_name in os.listdir(directory):
-        if file_name.endswith('.csv'):
-            file_path = os.path.join(directory, file_name)
-            with open(file_path, newline='') as csv_file:
-                reader = csv.reader(csv_file)
-                for row in reader:
-                    data_model.add_data([row])
-    return data_model
+from data_model import DataModel, load_excel_files
 
 if __name__ == '__main__':
     excel_directory = input('Enter the directory where the excel files are located: ')
