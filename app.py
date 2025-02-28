@@ -14,8 +14,7 @@ def load_excel_files(directory: str):
     return data_model
 
 if __name__ == '__main__':
-    #excel_directory = input('Enter the directory where the excel files are located: ')
-    excel_directory = r'C:\Users\charl\OneDrive\Documents\csv_data'
+    excel_directory = input('Enter the directory where the excel files are located: ')
     data_model = load_excel_files(excel_directory)
     search_term = input('Enter the search term: ')
     results = data_model.query_like(search_term)
