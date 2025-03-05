@@ -2,6 +2,7 @@ import os
 import csv
 from data_model import DataModel, load_excel_files
 from termcolor import colored
+from tabulate import tabulate
 
 if __name__ == '__main__':
     excel_directory = input('Enter the directory where the excel files are located, for multiple directories separate by a comma. ')
@@ -12,9 +13,11 @@ if __name__ == '__main__':
     if results:
         print('Results:')
         for header, rows in results.items():
-            print(f'Headers: {", ".join(header)}')
-            for row in rows:
-                highlighted_result = [colored(cell, 'green') if search_term.lower() in str(cell).lower() else cell for cell in row]
-                print(', '.join(highlighted_result))
+            table = [header] + rows
+            highlighted_table = [
+                [colored(cell, 'green') if search_term.lower() in str(cell).lower() else cell for cell in row]
+                for row in table
+            ]
+            print(tabulate(highlighted_table, headers="firstrow", tablefmt="grid"))
     else:
         print('No results found.')
