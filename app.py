@@ -10,12 +10,11 @@ if __name__ == '__main__':
     results = data_model.query_like(search_term)
     
     if results:
-        # Print column headers
         print('Results:')
-       
-        # Print each result with the search term highlighted
-        for result in results:
-            highlighted_result = [colored(cell, 'green') if search_term.lower() in str(cell).lower() else cell for cell in result]
-            print(', '.join(highlighted_result))
+        for header, rows in results.items():
+            print(f'Headers: {", ".join(header)}')
+            for row in rows:
+                highlighted_result = [colored(cell, 'green') if search_term.lower() in str(cell).lower() else cell for cell in row]
+                print(', '.join(highlighted_result))
     else:
         print('No results found.')
